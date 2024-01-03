@@ -1,5 +1,4 @@
 import pygame
-import textwrap
 import random
 from components.tiles import (conjunction_tile, exclusive_conjunction_tile, disjunction_tile, exclusive_disjunction_tile, negation_tile, implies_tile, biconditional_tile)
 from components.tiles import (assigned_tile, get_conector)
@@ -65,9 +64,9 @@ def screen_render():
     character_sprite.add(character)
     game_over_sprite_list.add(arrow)
 
-    game_over_menu = Game_Over_Menu(screen, arrow, game_over_sprite_list)
     running = True
     game_over = False
+    game_over_menu = Game_Over_Menu(screen, arrow, game_over_sprite_list, game_over)
 
     clock = pygame.time.Clock()
     counter = 2
@@ -97,7 +96,7 @@ def screen_render():
                         else:
                             game_over = True
             else:
-                game_over_menu.Menu_Logic(event, running)
+                game_over_menu.Menu_Logic(event)
 
         if not game_over:
             score_text = f"Puntaje: {score}"
@@ -108,9 +107,6 @@ def screen_render():
                 if counter == 0:
                     counter_running = False
                     character.reset_position()
-                    random_preposition = random.choice(list_of_prepositions)
-                    answer = get_answer(random_preposition)
-                    print("Fin")
                     sprites.empty()
 
                     random_preposition = random.choice(list_of_prepositions)
@@ -139,9 +135,8 @@ def screen_render():
                     sprites.add(first_tile)
                     sprites.add(second_tile)
                     counter = 2
-
                     continue
-                    
+
 
             show_score = font.render(score_text, True, color)
             screen.blit(bg_image, (0, 0))
@@ -155,11 +150,11 @@ def screen_render():
 
             sprites.draw(screen)
             character_sprite.draw(screen)
-            
             pygame.display.flip()
             clock.tick(1)
+
         else:
-            game_over_menu.Show_Game_Over_Menu()
+            game_over_menu.Show_Game_Over_Menu() 
             pygame.display.flip()
 
     pygame.quit()
