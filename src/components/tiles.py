@@ -52,9 +52,9 @@ biconditional_image = pygame.image.load(biconditional_image)
 
 # Assign values to tiles
 conjunction_tile = Tile(conjunction_image, "and")
-exclusive_conjunction_tile = Tile(exclusive_conjunction_image, "not and")
+exclusive_conjunction_tile = Tile(exclusive_conjunction_image, "exlusive conjunction")
 disjunction_tile = Tile(disjunction_image, "or")
-exclusive_disjunction_tile = Tile(exclusive_disjunction_image, "not or")
+exclusive_disjunction_tile = Tile(exclusive_disjunction_image, "exclusive disjunction")
 negation_tile = Tile(negation_image, "not")
 implies_tile = Tile(implies_image, "implies")
 biconditional_tile = Tile(biconditional_image, "biconditional")
@@ -63,11 +63,11 @@ biconditional_tile = Tile(biconditional_image, "biconditional")
 def assigned_tile(answer):
     if answer == "and":
         return conjunction_tile
-    elif answer == "not and":
+    elif answer == "exclusive conjunction":
         return exclusive_conjunction_tile
     elif answer == "or":
         return disjunction_tile
-    elif answer == "not or":
+    elif answer == "exclusive disjunction":
         return exclusive_disjunction_tile
     elif answer == "not":
         return negation_tile
@@ -79,12 +79,12 @@ def assigned_tile(answer):
 def get_conector(answer):
     if answer == "and":
         return "^"
-    elif answer == "not and":
-        return "¬^"
+    elif answer == "exclusive conjunctio":
+        return "_^_"
     elif answer == "or":
         return "v"
-    elif answer == "not or":
-        return "¬v"
+    elif answer == "exclusive disjunction":
+        return "_v_"
     elif answer == "not":
         return "¬"
     elif answer == "implies":
